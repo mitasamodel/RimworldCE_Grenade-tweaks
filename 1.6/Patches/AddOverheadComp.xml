@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Add comps to any CE grenades that don't have it by default -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Weapon_GrenadeStickBomb" or defName="CE_Weapon_GrenadeConcussion"]</xpath>
+		<value>
+			<comps/>
+		</value>
+	</Operation>
+	
+	<!-- Now that we know everything should have the comp node, we can add the gizmo -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeEMP" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeTox" or defName="CE_Weapon_GrenadeConcussion" or defName="CE_Weapon_GrenadeFlashbang" or defName="CE_Weapon_GrenadeStickBomb" or defName="CE_Weapon_GrenadeSmoke" or defName="CE_Weapon_GrenadeFirefoam"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>AmogusGrenade.GizmoForNades</compClass>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Remove the minimum range from the grenades -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeEMP" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeTox" or defName="CE_Weapon_GrenadeConcussion" or defName="CE_Weapon_GrenadeFlashbang" or defName="CE_Weapon_GrenadeStickBomb" or defName="CE_Weapon_GrenadeSmoke" or defName="CE_Weapon_GrenadeFirefoam"]/verbs/li/minRange</xpath>
+	</Operation>
+</Patch>
